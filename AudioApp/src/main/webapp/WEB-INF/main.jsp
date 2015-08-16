@@ -91,7 +91,7 @@ h1.heading {
 </head>
 <body>
 
-	<h1 class="heading">My Google Map</h1>
+	<h1 class="heading">Audio App Map</h1>
 	<div align="center">Right Click to Drop a New Marker</div>
 	<div id="google_map"></div>
 
