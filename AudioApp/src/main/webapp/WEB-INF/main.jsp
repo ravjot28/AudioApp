@@ -39,6 +39,7 @@ $(document).ready(function() {
         
         //Load Markers from the XML File, Check (map_process.php)
         $.get("getmap.action", function (data) {
+        	alert($(data).find("marker"));
             $(data).find("marker").each(function () {
                  //Get user input values for the marker from the form
                   var name      = $(this).attr('name');
