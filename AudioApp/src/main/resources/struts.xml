@@ -18,6 +18,11 @@
 			<result name="success">welcome.jsp</result>
 			<result name="input">welcome.jsp</result>
 		</action>
+		<action name="map" class="com.rav.audtioapp.action.MapAction">
+			<result name="success">WEB-INF/main.jsp</result>
+			<result name="input">WEB-INF/main.jsp</result>
+		</action>
+
 	</package>
 
 </struts>
