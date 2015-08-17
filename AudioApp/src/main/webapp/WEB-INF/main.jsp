@@ -38,7 +38,7 @@ $(document).ready(function() {
         map = new google.maps.Map(document.getElementById("google_map"), googleMapOptions);         
         
         //Load Markers from the XML File, Check (map_process.php)
-        $.get("map_process.php", function (data) {
+        $.get("getmap.action", function (data) {
             $(data).find("marker").each(function () {
                  //Get user input values for the marker from the form
                   var name      = $(this).attr('name');
@@ -55,7 +55,7 @@ $(document).ready(function() {
         google.maps.event.addListener(map, 'rightclick', function(event) {
             //Edit form to be displayed with new marker
             var EditForm = '<p><div class="marker-edit">'+
-            '<form action="ajax-save.php" method="POST" name="SaveMarker" id="SaveMarker">'+
+            '<form action="savemap.action" method="POST" name="SaveMarker" id="SaveMarker">'+
             '<label for="pName"><span>Place Name :</span><input type="text" name="pName" class="save-name" placeholder="Enter Title" maxlength="40" /></label>'+
             '<label for="pDesc"><span>Description :</span><textarea name="pDesc" class="save-desc" placeholder="Enter Address" maxlength="150"></textarea></label>'+
             '<label for="pType"><span>Type :</span> <select name="pType" class="save-type"><option value="restaurant">Rastaurant</option><option value="bar">Bar</option>'+

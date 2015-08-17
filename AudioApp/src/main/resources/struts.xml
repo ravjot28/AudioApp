@@ -22,7 +22,15 @@
 			<result name="success">WEB-INF/main.jsp</result>
 			<result name="input">WEB-INF/main.jsp</result>
 		</action>
-
+		<action name="getmap" class="com.rav.audtioapp.action.MapAction" method="getMap">
+			<result name="success">WEB-INF/main.jsp</result>
+			<result name="input">WEB-INF/main.jsp</result>
+		</action>
+		
+		<action name="savemap" class="com.rav.audtioapp.action.MapAction" method="saveMap">
+			<result name="success">WEB-INF/main.jsp</result>
+			<result name="input">WEB-INF/main.jsp</result>
+		</action>
 	</package>
 
 </struts>

@@ -42,5 +42,17 @@ public class MapAction {
 		System.out.println("Input parameters are :" + name + " " + " " + address + " " + latlang + " " + type);
 		return "success";
 	}
+	
+	public String getMap(){
+		System.out.println("In getMap");
+		return "success";
+	}
+	
+	public String saveMap(){
+
+		System.out.println("In saveMap");
+		return "success";
+	
+	}
 
 }
