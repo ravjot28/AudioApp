@@ -7,10 +7,10 @@
 <title>Audio App</title>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
-<script src="js/recorder.js"></script>
-<script src="js/Fr.voice.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/record.js"></script>
+<script src="WEB-INF/js/recorder.js"></script>
+<script src="WEB-INF/js/Fr.voice.js"></script>
+<script src="WEB-INF/js/jquery.js"></script>
+<script src="WEB-INF/js/record.js"></script>
 
 <style>
 .button {
@@ -53,7 +53,7 @@ a.button {
 	$(document)
 			.ready(
 					function() {
-						var mapCenter = new google.maps.LatLng(56, -46); //Google map Coordinates
+						var mapCenter = new google.maps.LatLng(56, -96); //Google map Coordinates
 						var map;
 
 						map_initialize(); // initialize google map
@@ -62,7 +62,7 @@ a.button {
 						function map_initialize() {
 							var googleMapOptions = {
 								center : mapCenter,
-								zoom : 17, //zoom level, 0 = earth view to higher value
+								zoom : 10, //zoom level, 0 = earth view to higher value
 								panControl : true, //enable pan Control
 								zoomControl : true, //enable zoom control
 								zoomControlOptions : {
