@@ -38,9 +38,9 @@ $(document).ready(function() {
         map = new google.maps.Map(document.getElementById("google_map"), googleMapOptions);         
         
         //Load Markers from the XML File, Check (map_process.php)
-        $.get("getmap.action", function (data) {
+        /* $.get("getmap.action", function (data) {
         	alert($(data).find("marker"));
-            $(data).find("marker").each(function () {
+        	  $(data).find("marker").each(function () {
                  //Get user input values for the marker from the form
                   var name      = $(this).attr('name');
                   var address   = '<p>'+ $(this).attr('address') +'</p>';
@@ -50,7 +50,7 @@ $(document).ready(function() {
                   //call create_marker() function for xml loaded maker
                   create_marker(point, name, address, false, false, false, "https://lit-journey-6254.herokuapp.com/icons/pin.png");
             });
-        }); 
+        });  */
         
         //drop a new marker on right click
         google.maps.event.addListener(map, 'rightclick', function(event) {
