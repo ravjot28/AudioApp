@@ -7,10 +7,10 @@
 <title>Audio App</title>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
-<script src="WEB-INF/js/recorder.js"></script>
-<script src="WEB-INF/js/Fr.voice.js"></script>
-<script src="WEB-INF/js/jquery.js"></script>
-<script src="WEB-INF/js/record.js"></script>
+<script src="js/recorder.js"></script>
+<script src="js/Fr.voice.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/record.js"></script>
 
 <style>
 .button {
