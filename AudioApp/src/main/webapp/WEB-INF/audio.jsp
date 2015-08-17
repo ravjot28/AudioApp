@@ -49,12 +49,12 @@ a.button {
 <body>
 	<audio controls src="" id="audio"></audio>
 	<div style="margin: 10px;">
-		<a class="button" id="record">Record</a> <a
-			class="button disabled one" id="stop">Reset</a> <a
-			class="button disabled one" id="play">Play</a> <a
-			class="button disabled one" id="download">Download</a> <a
-			class="button disabled one" id="base64">Base64 URL</a> <a
-			class="button disabled one" id="mp3">MP3 URL</a>
+		<a class="button" id="record">Record</a> 
+		<a class="button disabled one" id="stop">Reset</a> 
+		<a class="button disabled one" id="play">Play</a> 
+		<a class="button disabled one" id="download">Download</a> 
+		<a class="button disabled one" id="base64">Base64 URL</a> 
+		<a class="button disabled one" id="mp3">MP3 URL</a>
 	</div>
 	<input class="button" type="checkbox" id="live" />
 	<label for="live">Live Output</label>
