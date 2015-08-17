@@ -6,14 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Audio App</title>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script
-	src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
 
 
 <script type="text/javascript">
 
 $(document).ready(function() {
-    var mapCenter = new google.maps.LatLng(47.6145, -122.3418); //Google map Coordinates
+    var mapCenter = new google.maps.LatLng(56, -46); //Google map Coordinates
     var map;
 
     map_initialize(); // initialize google map
@@ -23,8 +22,7 @@ $(document).ready(function() {
     {
         var googleMapOptions = 
         { 
-        		center:new google.maps.LatLng(56,-96),
-           
+        	center:mapCenter,
             zoom: 17, //zoom level, 0 = earth view to higher value
             panControl: true, //enable pan Control
             zoomControl: true, //enable zoom control
