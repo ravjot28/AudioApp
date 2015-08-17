@@ -7,7 +7,47 @@
 <title>Audio App</title>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="js/recorder.js"></script>
+<script src="js/Fr.voice.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/record.js"></script>
 
+<style>
+.button {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0px 5px;
+	padding: 5px 12px;
+	cursor: pointer;
+	outline: none;
+	font-size: 13px;
+	text-decoration: none !important;
+	text-align: center;
+	color: #fff;
+	background-color: #4D90FE;
+	background-image: linear-gradient(top, #4D90FE, #4787ED);
+	background-image: -ms-linear-gradient(top, #4D90FE, #4787ED);
+	background-image: -o-linear-gradient(top, #4D90FE, #4787ED);
+	background-image: linear-gradient(top, #4D90FE, #4787ED);
+	border: 1px solid #4787ED;
+	box-shadow: 0 1px 3px #BFBFBF;
+}
+
+a.button {
+	color: #fff;
+}
+
+.button:hover {
+	box-shadow: inset 0px 1px 1px #8C8C8C;
+}
+
+.button.disabled {
+	box-shadow: none;
+	opacity: 0.7;
+}
+</style>
+<link rel="stylesheet" href="CSS/footer.css" type="text/css"
+	media="screen">
 
 <script type="text/javascript">
 	$(document)
@@ -68,12 +108,23 @@
 														+ '<option value="house">House</option></select></label>'
 														+ '</form>'
 														+ '</div></p><button name="save-marker" class="save-marker">Save Marker Details</button>';
-
+												var audioForm = '<audio controls src="" id="audio"></audio>'
+														+ '<div style="margin: 10px;">'
+														+ '<a class="button" id="record">Record</a> <a'
+													+ 'class="button disabled one" id="stop">Reset</a> <a'
+													+ 'class="button disabled one" id="play">Play</a> <a'
+													+ 'class="button disabled one" id="download">Download</a> <a'
+													+ 'class="button disabled one" id="base64">Base64 URL</a> <a'
+													+ 'class="button disabled one" id="mp3">MP3 URL</a>'
+														+ '</div>'
+														+ '<input class="button" type="checkbox" id="live" />'
+														+ '<label for="live">Live Output</label>';
 												//call create_marker() function
 												create_marker(event.latLng,
-														'New Marker', EditForm,
-														true, true, true,
-														"http://PATH-TO-YOUR-WEBSITE-ICON/icons/pin_green.png");
+														'Record Sound',
+														audioForm, true, true,
+														true,
+														"https://lit-journey-6254.herokuapp.com/icons/pin.png");
 											});
 						}
 
@@ -245,6 +296,6 @@ h1.heading {
 	<h1 class="heading">Audio App Map</h1>
 	<div align="center">Right Click to Drop a New Marker</div>
 	<div id="google_map"></div>
-
+	<%@include file="../footer.html"%>
 </body>
 </html>
