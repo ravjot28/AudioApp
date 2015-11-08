@@ -28,7 +28,7 @@ public class DAOUtil {
 				connection = connectionPool.getConnection();
 			}
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace();
 		}
 		return connection;
 	}

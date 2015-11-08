@@ -5,9 +5,7 @@
 <%@taglib uri="/struts-jquery-tags" prefix="sj"%>
 <html>
 <head>
-<base href="/">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <link rel="stylesheet"
@@ -20,38 +18,169 @@
 	type="text/css" media="screen">
 <link rel="stylesheet" href="/CSS/footer.css" type="text/css"
 	media="screen">
-<!-- Latest compiled and minified CSS -->
 
-<title>Audio App</title>
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		//Handles menu drop down
+		var map;
 		$('.dropdown-menu').find('form').click(function(e) {
 			e.stopPropagation();
 		});
+
 	});
+	function initAutocomplete() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			center : {
+				lat : 45.4,
+				lng : -75.7
+			},
+			zoom : 10,
+			mapTypeId : google.maps.MapTypeId.ROADMAP,
+			streetViewControl: false
+		});
+
+		/* $.get("getmap.action", function (data) {
+			alert($(data).find("marker"));
+			  $(data).find("marker").each(function () {
+		         //Get user input values for the marker from the form
+		          var name      = $(this).attr('name');
+		          var address   = '<p>'+ $(this).attr('address') +'</p>';
+		          var type      = $(this).attr('type');
+		          var point     = new google.maps.LatLng(parseFloat($(this).attr('lat')),parseFloat($(this).attr('lng')));
+
+		          //call create_marker() function for xml loaded maker
+		          create_marker(point, name, address, false, false, false, "https://lit-journey-6254.herokuapp.com/icons/pin.png");
+		    });
+		});  */
+		var point = new google.maps.LatLng(parseFloat(45.4), parseFloat(-75.7));
+		create_marker(point, 'Temp', '<p>Hello World</p>', false, false, false,
+				"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+
+		var input = document.getElementById('pac-input');
+		var searchBox = new google.maps.places.SearchBox(input);
+		map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+		map.addListener('bounds_changed', function() {
+			searchBox.setBounds(map.getBounds());
+		});
+
+		searchBox.addListener('places_changed', function() {
+			var places = searchBox.getPlaces();
+
+			if (places.length == 0) {
+				return;
+			}
+
+			var bounds = new google.maps.LatLngBounds();
+			places.forEach(function(place) {
+				if (place.geometry.viewport) {
+					bounds.union(place.geometry.viewport);
+				} else {
+					bounds.extend(place.geometry.location);
+				}
+			});
+			map.fitBounds(bounds);
+		});
+	}
+
+	function create_marker(MapPos, MapTitle, MapDesc, InfoOpenDefault,
+			DragAble, Removable, iconPath) {
+		//new marker
+		var marker = new google.maps.Marker({
+			position : MapPos,
+			map : map,
+			draggable : DragAble,
+			animation : google.maps.Animation.DROP,
+			title : "Hello World!",
+			icon : iconPath
+		});
+
+		var contentString = $('<div class="marker-info-win">'
+				+ '<div class="marker-inner-win"><span class="info-content">'
+				+ '<h1 class="marker-heading">' + MapTitle + '</h1>' + MapDesc
+				+ '</span>' + '</div></div>');
+
+		var infowindow = new google.maps.InfoWindow();
+		infowindow.setContent(contentString[0]);
+
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.open(map, marker);
+		});
+
+		if (InfoOpenDefault) {
+			infowindow.open(map, marker);
+		}
+	}
 </script>
 
-<style type="text/css">
-#google_map {
-	width: 90%;
-	height: 500px;
+<script
+	src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"
+	async defer></script>
+<style>
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	width: 100%;
+	height: 80%;
 	margin-top: 0px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-h1.heading {
-	text-align: center;
-	font: 18px Georgia, "Times New Roman", Times, serif;
+.controls {
+	margin-top: 10px;
+	border: 1px solid transparent;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+	background-color: #fff;
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 300;
+	margin-left: 12px;
+	padding: 0 11px 0 13px;
+	text-overflow: ellipsis;
+	width: 300px;
+}
+
+#pac-input:focus {
+	border-color: #4d90fe;
+}
+
+.pac-container {
+	font-family: Roboto;
+}
+
+#type-selector {
+	color: #fff;
+	background-color: #4d90fe;
+	padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+	font-family: Roboto;
+	font-size: 13px;
+	font-weight: 300;
 }
 </style>
-
-<sj:head jqueryui="true" />
+<title>Strathy Language</title>
+<style>
+#target {
+	width: 345px;
+}
+</style>
 </head>
 <body>
-
 	<s:if
 		test="hasFieldErrors() || hasActionMessages() || hasActionErrors()">
 
@@ -84,7 +213,7 @@ h1.heading {
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Audio App</a>
+					<a class="navbar-brand" href="#">Strathy Language</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
@@ -127,7 +256,7 @@ h1.heading {
 			</div>
 		</div>
 	</div>
-	<div id="google_map"></div>
+
 
 	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true"
@@ -151,7 +280,9 @@ h1.heading {
 			</div>
 		</div>
 	</div>
+	<input id="pac-input" class="controls" type="text"
+		placeholder="Search Box">
+	<div id="map"></div>
 	<%@include file="/footer.html"%>
-
 </body>
 </html>
