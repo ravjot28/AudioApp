@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<%@taglib prefix="s" uri="/struts-tags"%>
 <%@taglib uri="/struts-jquery-tags" prefix="sj"%>
 <html>
 <head>
@@ -33,6 +32,21 @@
 		});
 	});
 </script>
+
+<style type="text/css">
+#google_map {
+	width: 90%;
+	height: 500px;
+	margin-top: 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h1.heading {
+	text-align: center;
+	font: 18px Georgia, "Times New Roman", Times, serif;
+}
+</style>
 
 <sj:head jqueryui="true" />
 </head>
@@ -113,7 +127,7 @@
 			</div>
 		</div>
 	</div>
-
+	<div id="google_map"></div>
 
 	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true"
