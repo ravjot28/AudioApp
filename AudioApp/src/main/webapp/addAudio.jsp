@@ -18,6 +18,10 @@
 	type="text/css" media="screen">
 <link rel="stylesheet" href="/CSS/footer.css" type="text/css"
 	media="screen">
+<script src="js/recorder.js"></script>
+<script src="js/Fr.voice.js"></script>
+<script src="js/record.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		var map;
@@ -37,36 +41,19 @@
 			streetViewControl : false
 		});
 
-		google.maps.event
-				.addListener(
-						map,
-						'rightclick',
-						function(event) {
-							//Edit form to be displayed with new marker
-							var EditForm = '<p><div class="marker-edit">'
-									+ '<form action="savemap.action" method="POST" name="SaveMarker" id="SaveMarker">'
-									+ '<label for="pName"><span>Place Name :</span><input type="text" name="pName" class="save-name" placeholder="Enter Title" maxlength="40" /></label>'
-									+ '<label for="pDesc"><span>Description :</span><textarea name="pDesc" class="save-desc" placeholder="Enter Address" maxlength="150"></textarea></label>'
-									+ '<label for="pType"><span>Type :</span> <select name="pType" class="save-type"><option value="restaurant">Rastaurant</option><option value="bar">Bar</option>'
-									+ '<option value="house">House</option></select></label>'
-									+ '</form>'
-									+ '</div></p><button name="save-marker" class="save-marker">Save Marker Details</button>';
-							var audioForm = '<audio controls src="" id="audio"></audio>'
-									+ '<div style="margin: 10px;">'
-									+ '<a class="button" id="record">Record</a>'
-									+ '<a class="button disabled one" id="stop">Reset</a>'
-									+ '<a class="button disabled one" id="play">Play</a> '
-									+ '<a class="button disabled one" id="download">Download</a>'
-									+ '<a class="button disabled one" id="base64">Base64 URL</a> '
-									+ '<a class="button disabled one" id="mp3">MP3 URL</a>'
-									+ '</div>'
-									+ '<input class="button" type="checkbox" id="live" />'
-									+ '<label for="live">Live Output</label>';
-							//call create_marker() function
-							create_marker(event.latLng, 'Record Sound',
-									audioForm, true, true, true,
-									"https://lit-journey-6254.herokuapp.com/icons/pin.png");
-						});
+		google.maps.event.addListener(map, 'rightclick', function(event) {
+
+			var audioForm = '<audio controls src="" id="audio"></audio>'
+					+ '<div style="margin: 10px;">'
+					+ '<a class="button" id="record">Start Recording</a>'
+					+ '<a class="button disabled one" id="stop">Reset</a>'
+					+ '<a class="button disabled one" id="play">Play</a> '
+					+ '<a class="button disabled one" id="base64">Submit</a>'
+					+ '</div>';
+			create_marker(event.latLng, 'Record Sound', audioForm, true, true,
+					true,
+					"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+		});
 
 		var input = document.getElementById('pac-input');
 		var searchBox = new google.maps.places.SearchBox(input);
