@@ -18,8 +18,6 @@
 	type="text/css" media="screen">
 <link rel="stylesheet" href="/CSS/footer.css" type="text/css"
 	media="screen">
-
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		var map;
@@ -186,6 +184,7 @@
 <script
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"
 	async defer></script>
+
 <style>
 html, body {
 	height: 100%;
@@ -243,6 +242,41 @@ html, body {
 	font-weight: 300;
 }
 </style>
+
+<style>
+.button {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0px 5px;
+	padding: 5px 12px;
+	cursor: pointer;
+	outline: none;
+	font-size: 13px;
+	text-decoration: none !important;
+	text-align: center;
+	color: #fff;
+	background-color: #4D90FE;
+	background-image: linear-gradient(top, #4D90FE, #4787ED);
+	background-image: -ms-linear-gradient(top, #4D90FE, #4787ED);
+	background-image: -o-linear-gradient(top, #4D90FE, #4787ED);
+	background-image: linear-gradient(top, #4D90FE, #4787ED);
+	border: 1px solid #4787ED;
+	box-shadow: 0 1px 3px #BFBFBF;
+}
+
+a.button {
+	color: #fff;
+}
+
+.button:hover {
+	box-shadow: inset 0px 1px 1px #8C8C8C;
+}
+
+.button.disabled {
+	box-shadow: none;
+	opacity: 0.7;
+}
+</style>
 <title>Strathy Language</title>
 <style>
 #target {
@@ -283,7 +317,7 @@ html, body {
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="welcome.jsp">Strathy Language</a>
+					<a class="navbar-brand" href="#">Strathy Language</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
@@ -350,6 +384,8 @@ html, body {
 			</div>
 		</div>
 	</div>
+	<div align="center">Right Click to Drop a New Marker</div>
+
 	<input id="pac-input" class="controls" type="text"
 		placeholder="Search Box">
 	<div id="map"></div>
