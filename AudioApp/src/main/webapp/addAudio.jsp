@@ -14,9 +14,8 @@
 <script src="js/easyWizard.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="https://lit-journey-6254.herokuapp.com/CSS/style.css"
-	type="text/css" media="screen">
+<link rel="stylesheet" href="CSS/style.css" type="text/css"
+	media="screen">
 <link rel="stylesheet" href="/CSS/footer.css" type="text/css"
 	media="screen">
 <script src="js/recorder.js"></script>
@@ -42,8 +41,6 @@
 			$('#myModal').modal("hide");
 
 		});
-		
-		
 
 	});
 
@@ -61,7 +58,7 @@
 		google.maps.event.addListener(map, 'rightclick', function(event1) {
 			this.event = event1;
 			$('#my').modal('show');
-
+			//document.getElementById("location").innerHTML = event1.latLng;
 			/* var audioForm = '<audio controls src="" id="audio"></audio>'
 					+ '<div style="margin: 10px;">'
 					+ '<a class="button" id="record">Start Recording</a>'
@@ -303,10 +300,25 @@ a.button {
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Easy Wizard</h4>
+					<h4 class="modal-title" id="myModalLabel">Add Audio</h4>
 				</div>
 				<div class="modal-body wizard-content">
-					<div class="wizard-step">Step 1</div>
+					<div id="location" class="wizard-step">
+						<select class="form-control" id="sel1">
+							<option selected="selected">Select your birth year</option>
+							<option>before 1915</option>
+
+							<script>
+								for (i = 1916; i < 1998; i++) {
+									document
+											.write('<option>' + i + '</option>');
+								}
+							</script>
+							<option>After 1997</option>
+						</select>
+
+
+					</div>
 					<div class="wizard-step">Step 2</div>
 					<div class="wizard-step">Step 3</div>
 					<div class="wizard-step">Step 4</div>
