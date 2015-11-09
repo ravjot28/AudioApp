@@ -25,11 +25,24 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var map;
+		var event;
+		var accept = "fasle";
 		$('.dropdown-menu').find('form').click(function(e) {
 			e.stopPropagation();
 		});
 
+		$('#myModal').on('show', function() {
+			var link = $(this).data('link'), agreeBtn = $(this).find('.agree');
+		});
+
+		$('#btnYes').click(function() {
+			accept = "true";
+			$('#myModal').modal("hide");
+
+		});
+
 	});
+
 	function initAutocomplete() {
 		map = new google.maps.Map(document.getElementById('map'), {
 			center : {
@@ -41,19 +54,48 @@
 			streetViewControl : false
 		});
 
-		google.maps.event.addListener(map, 'rightclick', function(event) {
+		google.maps.event
+				.addListener(
+						map,
+						'rightclick',
+						function(event) {
+							this.event = event;
+							$('#myModal').modal('show');
 
-			var audioForm = '<audio controls src="" id="audio"></audio>'
-					+ '<div style="margin: 10px;">'
-					+ '<a class="button" id="record">Start Recording</a>'
-					+ '<a class="button disabled one" id="stop">Reset</a>'
-					+ '<a class="button disabled one" id="play">Play</a> '
-					+ '<a class="button disabled one" id="base64">Submit</a>'
-					+ '</div>';
-			create_marker(event.latLng, 'Record Sound', audioForm, true, true,
-					true,
-					"https://lit-journey-6254.herokuapp.com/icons/pin.png");
-		});
+							var audioForm = '<audio controls src="" id="audio"></audio>'
+									+ '<div style="margin: 10px;">'
+									+ '<a class="button" id="record">Start Recording</a>'
+									+ '<a class="button disabled one" id="stop">Reset</a>'
+									+ '<a class="button disabled one" id="play">Play</a> '
+									+ '<a class="button disabled one" id="base64">Submit</a>'
+									+ '</div>';
+
+							 audioForm = '<div class="modal fade" id="my" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
+									+ '  <div class="modal-dialog" role="document">'
+									+ '  <div class="modal-content">'
+									+ '   <div class="modal-header">'
+									+ '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+									+ '     <span aria-hidden="true">&times;</span>'
+									+ '    </button>'
+									+ '   <h4 class="modal-title" id="myModalLabel">Easy Wizard</h4>'
+									+ '   </div>'
+									+ '   <div class="modal-body wizard-content">'
+									+ '     <div class="wizard-step"> Step 1 </div>'
+									+ '    <div class="wizard-step"> Step 2 </div>'
+									+ '    <div class="wizard-step"> Step 3 </div>'
+									+ '   <div class="wizard-step"> Step 4 </div>'
+									+ '  </div>'
+									+ '   <div class="modal-footer wizard-buttons"> '
+									+ '    <!-- The wizard button will be inserted here. --> '
+									+ '  </div>'
+									+ '  </div>'
+									+ '  </div>'
+									+ '	</div>';
+							create_marker(event.latLng, 'Record Sound',
+									audioForm, true, true, true,
+									"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+
+						});
 
 		var input = document.getElementById('pac-input');
 		var searchBox = new google.maps.places.SearchBox(input);
@@ -272,6 +314,60 @@ a.button {
 </style>
 </head>
 <body>
+
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<p>Sed ut perspiciatis unde omnis iste natus error sit
+						voluptatem accusantium doloremque laudantium, totam rem aperiam,
+						eaque ipsa quae ab illo inventore veritatis et quasi architecto
+						beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
+						voluptas sit aspernatur aut odit aut fugit, sed quia cor magni
+						dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
+						quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+						adipisci velit,</p>
+					<p>Do you want to agree?</p>
+				</div>
+				<div class="modal-footer">
+					<button href="#" id="btnYes" class="btn agree">Yes</button>
+					<button href="#" data-dismiss="modal" aria-hidden="true"
+						class="btn secondary">No</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-header">
+			<a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
+			<h3>Agree</h3>
+		</div>
+		<div class="modal-body">
+			<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+				accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+				quae ab illo inventore veritatis et quasi architecto beatae vitae
+				dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+				aspernatur aut odit aut fugit, sed quia cor magni dolores eos qui
+				ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+				dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,</p>
+			<p>Do you want to agree?</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" id="btnYes" class="btn agree">Yes</a> <a href="#"
+				data-dismiss="modal" aria-hidden="true" class="btn secondary">No</a>
+		</div>
+	</div> -->
+
 	<s:if
 		test="hasFieldErrors() || hasActionMessages() || hasActionErrors()">
 
