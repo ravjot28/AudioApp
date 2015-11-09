@@ -10,7 +10,8 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="CSS/easyWizard.css">
+<script src="js/easyWizard.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
@@ -24,9 +25,10 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		$("#my").wizard();
+
 		var map;
 		var event;
-		var accept = "fasle";
 		$('.dropdown-menu').find('form').click(function(e) {
 			e.stopPropagation();
 		});
@@ -40,6 +42,8 @@
 			$('#myModal').modal("hide");
 
 		});
+		
+		
 
 	});
 
@@ -54,48 +58,23 @@
 			streetViewControl : false
 		});
 
-		google.maps.event
-				.addListener(
-						map,
-						'rightclick',
-						function(event) {
-							this.event = event;
-							$('#myModal').modal('show');
+		google.maps.event.addListener(map, 'rightclick', function(event1) {
+			this.event = event1;
+			$('#my').modal('show');
 
-							var audioForm = '<audio controls src="" id="audio"></audio>'
-									+ '<div style="margin: 10px;">'
-									+ '<a class="button" id="record">Start Recording</a>'
-									+ '<a class="button disabled one" id="stop">Reset</a>'
-									+ '<a class="button disabled one" id="play">Play</a> '
-									+ '<a class="button disabled one" id="base64">Submit</a>'
-									+ '</div>';
+			/* var audioForm = '<audio controls src="" id="audio"></audio>'
+					+ '<div style="margin: 10px;">'
+					+ '<a class="button" id="record">Start Recording</a>'
+					+ '<a class="button disabled one" id="stop">Reset</a>'
+					+ '<a class="button disabled one" id="play">Play</a> '
+					+ '<a class="button disabled one" id="base64">Submit</a>'
+					+ '</div>';
 
-							 audioForm = '<div class="modal fade" id="my" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
-									+ '  <div class="modal-dialog" role="document">'
-									+ '  <div class="modal-content">'
-									+ '   <div class="modal-header">'
-									+ '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">'
-									+ '     <span aria-hidden="true">&times;</span>'
-									+ '    </button>'
-									+ '   <h4 class="modal-title" id="myModalLabel">Easy Wizard</h4>'
-									+ '   </div>'
-									+ '   <div class="modal-body wizard-content">'
-									+ '     <div class="wizard-step"> Step 1 </div>'
-									+ '    <div class="wizard-step"> Step 2 </div>'
-									+ '    <div class="wizard-step"> Step 3 </div>'
-									+ '   <div class="wizard-step"> Step 4 </div>'
-									+ '  </div>'
-									+ '   <div class="modal-footer wizard-buttons"> '
-									+ '    <!-- The wizard button will be inserted here. --> '
-									+ '  </div>'
-									+ '  </div>'
-									+ '  </div>'
-									+ '	</div>';
-							create_marker(event.latLng, 'Record Sound',
-									audioForm, true, true, true,
-									"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+			create_marker(event.latLng, 'Record Sound',
+					audioForm, true, true, true,
+					"https://lit-journey-6254.herokuapp.com/icons/pin.png"); */
 
-						});
+		});
 
 		var input = document.getElementById('pac-input');
 		var searchBox = new google.maps.places.SearchBox(input);
@@ -314,6 +293,30 @@ a.button {
 </style>
 </head>
 <body>
+
+	<div class="modal fade" id="my" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Easy Wizard</h4>
+				</div>
+				<div class="modal-body wizard-content">
+					<div class="wizard-step">Step 1</div>
+					<div class="wizard-step">Step 2</div>
+					<div class="wizard-step">Step 3</div>
+					<div class="wizard-step">Step 4</div>
+				</div>
+				<div class="modal-footer wizard-buttons">
+					<!-- The wizard button will be inserted here. -->
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
