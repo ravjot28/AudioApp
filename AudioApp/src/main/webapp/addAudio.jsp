@@ -36,25 +36,39 @@
 			},
 			zoom : 10,
 			mapTypeId : google.maps.MapTypeId.ROADMAP,
-			streetViewControl: false
+			streetViewControl : false
 		});
 
-		/* $.get("getmap.action", function (data) {
-			alert($(data).find("marker"));
-			  $(data).find("marker").each(function () {
-		         //Get user input values for the marker from the form
-		          var name      = $(this).attr('name');
-		          var address   = '<p>'+ $(this).attr('address') +'</p>';
-		          var type      = $(this).attr('type');
-		          var point     = new google.maps.LatLng(parseFloat($(this).attr('lat')),parseFloat($(this).attr('lng')));
-
-		          //call create_marker() function for xml loaded maker
-		          create_marker(point, name, address, false, false, false, "https://lit-journey-6254.herokuapp.com/icons/pin.png");
-		    });
-		});  */
-		var point = new google.maps.LatLng(parseFloat(45.4), parseFloat(-75.7));
-		create_marker(point, 'Temp', '<p>Hello World</p>', false, false, false,
-				"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+		google.maps.event
+				.addListener(
+						map,
+						'rightclick',
+						function(event) {
+							//Edit form to be displayed with new marker
+							var EditForm = '<p><div class="marker-edit">'
+									+ '<form action="savemap.action" method="POST" name="SaveMarker" id="SaveMarker">'
+									+ '<label for="pName"><span>Place Name :</span><input type="text" name="pName" class="save-name" placeholder="Enter Title" maxlength="40" /></label>'
+									+ '<label for="pDesc"><span>Description :</span><textarea name="pDesc" class="save-desc" placeholder="Enter Address" maxlength="150"></textarea></label>'
+									+ '<label for="pType"><span>Type :</span> <select name="pType" class="save-type"><option value="restaurant">Rastaurant</option><option value="bar">Bar</option>'
+									+ '<option value="house">House</option></select></label>'
+									+ '</form>'
+									+ '</div></p><button name="save-marker" class="save-marker">Save Marker Details</button>';
+							var audioForm = '<audio controls src="" id="audio"></audio>'
+									+ '<div style="margin: 10px;">'
+									+ '<a class="button" id="record">Record</a>'
+									+ '<a class="button disabled one" id="stop">Reset</a>'
+									+ '<a class="button disabled one" id="play">Play</a> '
+									+ '<a class="button disabled one" id="download">Download</a>'
+									+ '<a class="button disabled one" id="base64">Base64 URL</a> '
+									+ '<a class="button disabled one" id="mp3">MP3 URL</a>'
+									+ '</div>'
+									+ '<input class="button" type="checkbox" id="live" />'
+									+ '<label for="live">Live Output</label>';
+							//call create_marker() function
+							create_marker(event.latLng, 'Record Sound',
+									audioForm, true, true, true,
+									"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+						});
 
 		var input = document.getElementById('pac-input');
 		var searchBox = new google.maps.places.SearchBox(input);
@@ -81,6 +95,62 @@
 			});
 			map.fitBounds(bounds);
 		});
+	}
+
+	//############### Save Marker Function ##############
+	function save_marker(Marker, mName, mAddress, mType, replaceWin) {
+		//Save new marker using jQuery Ajax
+		var mLatLang = Marker.getPosition().toUrlValue(); //get marker position
+		var myData = {
+			name : mName,
+			address : mAddress,
+			latlang : mLatLang,
+			type : mType
+		}; //post variables
+		console.log(replaceWin);
+		$
+				.ajax({
+					type : "POST",
+					url : "map.action",
+					data : myData,
+					success : function(data) {
+						replaceWin.html(data); //replace info window with new html
+						Marker.setDraggable(false); //set marker to fixed
+						Marker
+								.setIcon('https://lit-journey-6254.herokuapp.com/icons/pin.png'); //replace icon
+					},
+					error : function(xhr, ajaxOptions, thrownError) {
+						alert(thrownError); //throw any errors
+					}
+				});
+	}
+
+	//############### Remove Marker Function ##############
+	function remove_marker(Marker) {
+		/* determine whether marker is draggable 
+		new markers are draggable and saved markers are fixed */
+		if (Marker.getDraggable()) {
+			Marker.setMap(null); //just remove new marker
+		} else {
+			//Remove saved marker from DB and map using jQuery Ajax
+			var mLatLang = Marker.getPosition().toUrlValue(); //get marker position
+			var myData = {
+				del : 'true',
+				latlang : mLatLang
+			}; //post variables
+			$.ajax({
+				type : "POST",
+				url : "map.action",
+				data : myData,
+				success : function(data) {
+					Marker.setMap(null);
+					alert(data);
+				},
+				error : function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError); //throw any errors
+				}
+			});
+		}
 	}
 
 	function create_marker(MapPos, MapTitle, MapDesc, InfoOpenDefault,
@@ -213,7 +283,7 @@ html, body {
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Strathy Language</a>
+					<a class="navbar-brand" href="welcome.jsp">Strathy Language</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
