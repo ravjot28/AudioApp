@@ -403,7 +403,7 @@ a.button {
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Strathy Language</a>
+					<a class="navbar-brand" href="welcome.jsp">Strathy Language</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
