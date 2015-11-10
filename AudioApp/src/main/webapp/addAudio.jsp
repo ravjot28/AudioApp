@@ -23,11 +23,12 @@
 <script src="js/record.js"></script>
 
 <script type="text/javascript">
+	var clicked = "false";
+	var map;
+	var event;
 	$(document).ready(function() {
 		$("#my").wizard();
 
-		var map;
-		var event;
 		$('.dropdown-menu').find('form').click(function(e) {
 			e.stopPropagation();
 		});
@@ -40,6 +41,17 @@
 			accept = "true";
 			$('#myModal').modal("hide");
 
+		});
+
+		var btnFinish = $(this).find(".wizard-button-finish");
+
+		$('#my').on('hidden.bs.modal', function() {
+			clicked = "false";
+		});
+
+		btnFinish.on("click", function() {
+			var hv = $('#location').val();
+			alert("Location Coordinates selected " + hv);
 		});
 
 	});
@@ -56,8 +68,12 @@
 		});
 
 		google.maps.event.addListener(map, 'rightclick', function(event1) {
-			this.event = event1;
-			$('#my').modal('show');
+			if (clicked == "false") {
+				event = event1;
+				$("#location").val(event.latLng);
+				$('#my').modal('show');
+				clicked = "true";
+			}
 			//document.getElementById("location").innerHTML = event1.latLng;
 			/* var audioForm = '<audio controls src="" id="audio"></audio>'
 					+ '<div style="margin: 10px;">'
@@ -304,24 +320,113 @@ a.button {
 				</div>
 				<div class="modal-body wizard-content">
 					<div id="location" class="wizard-step">
-						<select class="form-control" id="sel1">
-							<option selected="selected">Select your birth year</option>
-							<option>before 1915</option>
+						<input type="hidden" id="location" name="location" />
+						<p>
+							<select class="form-control" id="age">
+								<option selected="selected">Select your birth year</option>
+								<option>before 1915</option>
+								<script>
+									for (i = 1916; i < 1998; i++) {
+										document.write('<option>' + i
+												+ '</option>');
+									}
+								</script>
+								<option>After 1997</option>
+							</select>
+						</p>
 
-							<script>
-								for (i = 1916; i < 1998; i++) {
-									document
-											.write('<option>' + i + '</option>');
-								}
-							</script>
-							<option>After 1997</option>
-						</select>
+						<p>
+							<select class="form-control" id="gender">
+								<option selected="selected">Select your gender</option>
+								<option>Male</option>
+								<option>Female</option>
+								<option>Other</option>
+								<option>Prefer not to disclose</option>
+							</select>
+						</p>
 
+
+						<p>Do you consider English your mother tongue (the language
+							you learned first as a child and still use/understand)?</p>
+						<label class="radio-inline"> <input type="radio"
+							name="optradio">Yes
+						</label> <label class="radio-inline"> <input type="radio"
+							name="optradio">No
+						</label>
+
+
+						<p>
+							<label for="comment">If not, what is your mother tongue?
+							</label> <input type="text" class="form-control" id="mothertounge">
+						</p>
+
+						<p>
+							<select class="form-control" id="gender">
+								<option selected="selected">If not, how would you rate
+									your fluency in English?</option>
+								<option>native speaker</option>
+								<option>highly fluent</option>
+								<option>intermediate level of fluency</option>
+								<option>beginner</option>
+							</select>
+						</p>
+
+						<p>Were you born in Canada?</p>
+						<label class="radio-inline"> <input type="radio"
+							name="citizen">Yes
+						</label> <label class="radio-inline"> <input type="radio"
+							name="citizen">No
+						</label>
+
+						<p>
+							<select class="form-control" id="age">
+								<option selected="selected">If no, at what age did you
+									move to Canada?</option>
+								<option>I have never lived in Canada</option>
+								<option>before age 5</option>
+								<option>between 5 and 12</option>
+								<option>between 13 and 20</option>
+								<option>age 21 or older</option>
+							</select>
+						</p>
+
+						<p>
+							<label for="comment">List the town and province where you
+								spent the majority of your years age 5-18. </label> <input type="text"
+								class="form-control" id="mothertounge">
+						</p>
+
+						<p>
+							<label for="comment">Is there an email address where we
+								can contact you about your participation if necessary? </label> <input
+								type="text" class="form-control" id="mothertounge">
+						</p>
 
 					</div>
-					<div class="wizard-step">Step 2</div>
-					<div class="wizard-step">Step 3</div>
-					<div class="wizard-step">Step 4</div>
+					<div class="wizard-step">
+						<audio controls src="" id="audio"></audio>
+						<div style="margin: 10px;">
+							<a class="button" id="record">Start Recording</a> <a
+								class="button disabled one" id="stop">Reset</a> <a
+								class="button disabled one" id="play">Play</a> <a
+								class="button disabled one" id="base64">Submit</a>
+						</div>
+
+						<div style="margin: 10px;">
+							<a class="button" id="record">Start Recording</a> <a
+								class="button disabled one" id="stop">Reset</a> <a
+								class="button disabled one" id="play">Play</a> <a
+								class="button disabled one" id="base64">Submit</a>
+						</div>
+
+						<div style="margin: 10px;">
+							<a class="button" id="record">Start Recording</a> <a
+								class="button disabled one" id="stop">Reset</a> <a
+								class="button disabled one" id="play">Play</a> <a
+								class="button disabled one" id="base64">Submit</a>
+						</div>
+					</div>
+					<div class="wizard-step">Do you want to submit the details?</div>
 				</div>
 				<div class="modal-footer wizard-buttons">
 					<!-- The wizard button will be inserted here. -->

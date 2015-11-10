@@ -10,7 +10,7 @@ $.fn.wizard = function(config) {
 	var exitText = config.exit || 'Exit';
 	var backText = config.back || 'Back';
 	var nextText = config.next || 'Next';
-	var finishText = config.finish || 'Finish';
+	var finishText = config.finish || 'Submit';
 	var isModal = config.isModal || true;
 	var validateNext = config.validateNext || function() {
 		return true;
@@ -118,7 +118,6 @@ $.fn.wizard = function(config) {
 		if (!validateFinish(step, steps[step - 1])) {
 			return;
 		}
-		;
 		if (!!config.onfinish) {
 			config.onfinish();
 		}
