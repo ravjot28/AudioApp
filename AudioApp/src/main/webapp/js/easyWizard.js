@@ -45,6 +45,8 @@ $.fn.wizard = function(config) {
 				// alert("Location Coordinates selected " + hv);
 				return true;
 			}
+		}else{
+			return true;
 		}
 
 	};
