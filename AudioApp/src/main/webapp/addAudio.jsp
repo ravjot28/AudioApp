@@ -88,6 +88,7 @@
 				$("#langno").prop('checked', false);
 				$("#citizenYes").prop('checked', false);
 				$("#citizenNo").prop('checked', false);
+				$("#location").val('');
 
 				/*var age = $('#age').find(":selected").text();
 				var gender = $('#gender').find(":selected").text();
