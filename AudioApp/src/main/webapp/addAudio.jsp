@@ -72,6 +72,44 @@
 		google.maps.event.addListener(map, 'click', function(event1) {
 			if (clicked == "false") {
 				event = event1;
+
+				$('#age').val('Select your birth year');
+				$('#gender').val('Select your gender');
+				$('#fluency').val(
+						'If not, how would you rate your fluency in English?');
+				$('#canadaage').val(
+						'If no, at what age did you move to Canada?');
+
+				$('#mothertounge').val('');
+				$('#yearsspent').val('');
+				$('#emailAddress').val('');
+				
+				$("#langyes").prop('checked', false);
+				$("#langno").prop('checked', false);
+				$("#citizenYes").prop('checked', false);
+				$("#citizenNo").prop('checked', false);
+
+				/*var age = $('#age').find(":selected").text();
+				var gender = $('#gender').find(":selected").text();
+				var langyes = $("#langyes").is(":checked");
+				var langno = $("#langno").is(":checked");
+				var mothertounge = $('#mothertounge').val();
+				var fluency = $('#fluency').find(":selected").text();
+				var citizenYes = $("#citizenYes").is(":checked");
+				var citizenNo = $("#citizenNo").is(":checked");
+				var canadaage = $('#canadaage').find(":selected").text();
+				var yearsspent = $('#yearsspent').val();
+				var emailAddress = $('#emailAddress').val();
+
+				if (age == 'Select your birth year'
+						|| gender == 'Select your gender'
+						|| ((!langyes && !langno) && (langno && mothertounge.length == 0) )
+						|| fluency == 'If not, how would you rate your fluency in English?'
+						|| ((!citizenYes && !citizenNo) && (canadaage == 'If no, at what age did you move to Canada?'))
+						|| emailAddress.length == 0 || yearsspent.length == 0) {
+					return false;
+				}*/
+
 				$("#location").val(event.latLng);
 				$('#my').modal('show');
 				clicked = "true";
