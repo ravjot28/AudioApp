@@ -10,8 +10,10 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 <link rel="stylesheet" href="CSS/easyWizard.css">
 <script src="js/easyWizard.js"></script>
+
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="CSS/style.css" type="text/css"
@@ -27,8 +29,8 @@
 	var map;
 	var event;
 	$(document).ready(function() {
-		$("#my").wizard();
-
+		 $("#my").wizard();
+		 
 		$('.dropdown-menu').find('form').click(function(e) {
 			e.stopPropagation();
 		});
@@ -43,16 +45,16 @@
 
 		});
 
-		var btnFinish = $(this).find(".wizard-button-finish");
-
+		/* 		var btnFinish = $(this).find(".wizard-button-finish");
+		 */
 		$('#my').on('hidden.bs.modal', function() {
 			clicked = "false";
 		});
 
-		btnFinish.on("click", function() {
+		/* btnFinish.on("click", function() {
 			var hv = $('#location').val();
 			alert("Location Coordinates selected " + hv);
-		});
+		}); */
 
 	});
 
@@ -67,7 +69,7 @@
 			streetViewControl : false
 		});
 
-		google.maps.event.addListener(map, 'rightclick', function(event1) {
+		google.maps.event.addListener(map, 'click', function(event1) {
 			if (clicked == "false") {
 				event = event1;
 				$("#location").val(event.latLng);
@@ -348,10 +350,10 @@ a.button {
 
 						<p>Do you consider English your mother tongue (the language
 							you learned first as a child and still use/understand)?</p>
-						<label class="radio-inline"> <input type="radio"
-							name="optradio">Yes
-						</label> <label class="radio-inline"> <input type="radio"
-							name="optradio">No
+						<label class="radio-inline"> <input id="langyes"
+							type="radio" name="optradio">Yes
+						</label> <label class="radio-inline"> <input id="langno"
+							type="radio" name="optradio">No
 						</label>
 
 
@@ -361,7 +363,7 @@ a.button {
 						</p>
 
 						<p>
-							<select class="form-control" id="gender">
+							<select class="form-control" id="fluency">
 								<option selected="selected">If not, how would you rate
 									your fluency in English?</option>
 								<option>native speaker</option>
@@ -373,13 +375,13 @@ a.button {
 
 						<p>Were you born in Canada?</p>
 						<label class="radio-inline"> <input type="radio"
-							name="citizen">Yes
+							name="citizenYes">Yes
 						</label> <label class="radio-inline"> <input type="radio"
-							name="citizen">No
+							name="citizenNo">No
 						</label>
 
 						<p>
-							<select class="form-control" id="age">
+							<select class="form-control" id="canadaage">
 								<option selected="selected">If no, at what age did you
 									move to Canada?</option>
 								<option>I have never lived in Canada</option>
@@ -393,13 +395,13 @@ a.button {
 						<p>
 							<label for="comment">List the town and province where you
 								spent the majority of your years age 5-18. </label> <input type="text"
-								class="form-control" id="mothertounge">
+								class="form-control" id="yearsspent">
 						</p>
 
 						<p>
 							<label for="comment">Is there an email address where we
 								can contact you about your participation if necessary? </label> <input
-								type="text" class="form-control" id="mothertounge">
+								type="text" class="form-control" id="emailAddress">
 						</p>
 
 					</div>

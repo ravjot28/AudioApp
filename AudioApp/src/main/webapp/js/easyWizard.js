@@ -18,7 +18,39 @@ $.fn.wizard = function(config) {
 	var validateFinish = config.validateFinish || function() {
 		return true;
 	};
-	//////////////////////
+
+	var validateNext = function() {
+		if (step == 1) {
+			var age = $('#age').find(":selected").text();
+			var gender = $('#gender').find(":selected").text();
+			var langyes = $("#langyes").is(":checked");
+			var langno = $("#langno").is(":checked");
+			var mothertounge = $('#mothertounge').val();
+			var fluency = $('#fluency').find(":selected").text();
+			var citizenYes = $("#citizenYes").is(":checked");
+			var citizenNo = $("#citizenNo").is(":checked");
+			var canadaage = $('#canadaage').find(":selected").text();
+			var yearsspent = $('#yearsspent').val();
+			var emailAddress = $('#emailAddress').val();
+
+			if (age == 'Select your birth year'
+					|| gender == 'Select your gender'
+					|| (!langyes && !langno)
+					|| fluency == 'If not, how would you rate your fluency in English?'
+					|| (!citizenYes && !citizenNo)
+					|| canadaage == 'If no, at what age did you move to Canada?'
+					|| emailAddress.length == 0 || yearsspent.length == 0
+					|| mothertounge.length == 0) {
+				return false;
+			} else {
+				var hv = $('#location').val();
+				alert("Location Coordinates selected " + hv);
+				return true;
+			}
+		}
+
+	};
+	// ////////////////////
 	var step = 1;
 	var container = $(this).find(containerSelector);
 	steps.hide();
@@ -57,7 +89,7 @@ $.fn.wizard = function(config) {
 				+ '"><div class="number">' + s + '</div></div>');
 	}
 	$(this).find(".wizard-steps-panel .step-" + step).toggleClass("doing");
-	//////////////////////
+	// ////////////////////
 	var contentForModal = "";
 	if (isModal) {
 		contentForModal = ' data-dismiss="modal"';
@@ -79,7 +111,10 @@ $.fn.wizard = function(config) {
 	var btnNext = $(this).find(".wizard-button-next");
 
 	btnNext.on("click", function() {
+		alert(step);
+		alert('calling validate');
 		if (!validateNext(step, steps[step - 1])) {
+			alert('validate returned false');
 			return;
 		}
 		;
@@ -115,13 +150,19 @@ $.fn.wizard = function(config) {
 	});
 
 	btnFinish.on("click", function() {
+
 		if (!validateFinish(step, steps[step - 1])) {
-			return;
+
+			$(container).find(".wizard-steps-panel .step-" + 1).toggleClass(
+					"doing").toggleClass("done");
+			$('#my').modal('show');
 		}
+
 		if (!!config.onfinish) {
+			alert('config on finish inside');
 			config.onfinish();
 		}
-	})
+	});
 
 	btnBack.hide();
 	btnFinish.hide();
