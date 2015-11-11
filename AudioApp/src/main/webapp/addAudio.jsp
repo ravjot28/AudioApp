@@ -29,8 +29,8 @@
 	var map;
 	var event;
 	$(document).ready(function() {
-		 $("#my").wizard();
-		 
+		$("#my").wizard();
+
 		$('.dropdown-menu').find('form').click(function(e) {
 			e.stopPropagation();
 		});
@@ -364,8 +364,8 @@ a.button {
 
 						<p>
 							<select class="form-control" id="fluency">
-								<option selected="selected">If not, how would you rate
-									your fluency in English?</option>
+								<option selected="selected">How would you rate your
+									fluency in English?</option>
 								<option>native speaker</option>
 								<option>highly fluent</option>
 								<option>intermediate level of fluency</option>

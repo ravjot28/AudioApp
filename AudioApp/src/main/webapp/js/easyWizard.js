@@ -35,16 +35,14 @@ $.fn.wizard = function(config) {
 
 			if (age == 'Select your birth year'
 					|| gender == 'Select your gender'
-					|| (!langyes && !langno)
+					|| ((!langyes && !langno) && (langno && mothertounge.length == 0) )
 					|| fluency == 'If not, how would you rate your fluency in English?'
-					|| (!citizenYes && !citizenNo)
-					|| canadaage == 'If no, at what age did you move to Canada?'
-					|| emailAddress.length == 0 || yearsspent.length == 0
-					|| mothertounge.length == 0) {
+					|| ((!citizenYes && !citizenNo) && (canadaage == 'If no, at what age did you move to Canada?'))
+					|| emailAddress.length == 0 || yearsspent.length == 0) {
 				return false;
 			} else {
 				var hv = $('#location').val();
-				alert("Location Coordinates selected " + hv);
+				// alert("Location Coordinates selected " + hv);
 				return true;
 			}
 		}
@@ -111,10 +109,7 @@ $.fn.wizard = function(config) {
 	var btnNext = $(this).find(".wizard-button-next");
 
 	btnNext.on("click", function() {
-		alert(step);
-		alert('calling validate');
 		if (!validateNext(step, steps[step - 1])) {
-			alert('validate returned false');
 			return;
 		}
 		;
@@ -159,7 +154,6 @@ $.fn.wizard = function(config) {
 		}
 
 		if (!!config.onfinish) {
-			alert('config on finish inside');
 			config.onfinish();
 		}
 	});
