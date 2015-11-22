@@ -367,7 +367,7 @@ a.button {
 
 
 				<div class="modal-body wizard-content">
-					<div id="location" class="wizard-step">
+					<div id="agreement" class="wizard-step">
 						<p>Thank you for your interest in being a part of our voice
 							map. Before we get started recording your audio, please read the
 							following information and answer the question related to consent.
