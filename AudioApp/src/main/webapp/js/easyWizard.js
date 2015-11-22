@@ -20,7 +20,7 @@ $.fn.wizard = function(config) {
 	};
 
 	var validateNext = function() {
-		if (step == 1) {
+		if (step == 2) {
 			var age = $('#age').find(":selected").text();
 			var gender = $('#gender').find(":selected").text();
 			var langyes = $("#langyes").is(":checked");

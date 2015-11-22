@@ -25,10 +25,15 @@
 <script src="js/record.js"></script>
 
 <script type="text/javascript">
+
 	var clicked = "false";
 	var map;
 	var event;
+
 	$(document).ready(function() {
+		google.maps.event.addDomListener(window, "load", initAutocomplete);
+
+		 $("body").show();
 		$("#my").wizard();
 
 		$('.dropdown-menu').find('form').click(function(e) {
@@ -83,7 +88,7 @@
 				$('#mothertounge').val('');
 				$('#yearsspent').val('');
 				$('#emailAddress').val('');
-				
+
 				$("#langyes").prop('checked', false);
 				$("#langno").prop('checked', false);
 				$("#citizenYes").prop('checked', false);
@@ -346,7 +351,7 @@ a.button {
 }
 </style>
 </head>
-<body>
+<body >
 
 	<div class="modal fade" id="my" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
@@ -359,7 +364,52 @@ a.button {
 					</button>
 					<h4 class="modal-title" id="myModalLabel">Add Audio</h4>
 				</div>
+
+
 				<div class="modal-body wizard-content">
+					<div id="location" class="wizard-step">
+						<p>Thank you for your interest in being a part of our voice
+							map. Before we get started recording your audio, please read the
+							following information and answer the question related to consent.
+							Once you click "Next", you will proceed to a brief questionnaire
+							about you and then to the recording portion.</p>
+						<p>
+							<strong>Canadian Voices Map</strong> is an interactive digital
+							map with structured audio samples from around the country. The
+							goal of the project is to explore dialect diversity in Canadian
+							English. Users can listen to samples, download audio files and
+							contribute their own voices.
+						</p>
+						<p>On the following screens, you will be asked to answer some
+							background questions about yourself and then to record yourself
+							reading twenty different English words. The process should take
+							less than ten minutes. There are no known risks to participation
+							in the study; participation is voluntary, and you may decline to
+							answer any questions you choose.</p>
+						<p>The audio files you submit will be available through the
+							website to any user, and these files will be linked to your
+							background information. We are not collecting names and your data
+							will therefore be anonymous and your confidentiality protected.
+							However, given that your voice could be recognized by others, you
+							should be aware that it may be possible for some users to
+							identify your data. If your audio samples are displayed on the
+							map and you later change your mind about your participation,
+							please contact us and we will remove the data.</p>
+						<p>
+							Any questions about study participation may be directed to the
+							Strathy Language Unit at strathy@queenus.ca. Any ethical concerns
+							about the study may be directed to the Chair of the General
+							Research Ethics Board at <a href="mailto:chair.GREB@queensu.ca">chair.GREB@queensu.ca</a>
+							or 613-533-6081. This study has been granted clearance according
+							to the recommended principles of Canadian ethics guidelines, and
+							Queen's policies.
+						</p>
+						<p>By clicking "Next" below, you acknowledge the following:</p>
+						<p>· You have read and understand the above Letter of
+							Information.</p>
+						<p>· You understand that the audio files and background
+							information you submit will be available on a public website.</p>
+					</div>
 					<div id="location" class="wizard-step">
 						<input type="hidden" id="location" name="location" />
 						<p>

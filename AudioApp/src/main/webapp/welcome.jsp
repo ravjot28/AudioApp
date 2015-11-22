@@ -22,6 +22,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		google.maps.event.addDomListener(window, "load", initAutocomplete);
+
 		var map;
 		$('.dropdown-menu').find('form').click(function(e) {
 			e.stopPropagation();
