@@ -20,20 +20,50 @@
 	media="screen">
 <link rel="stylesheet" href="/CSS/footer.css" type="text/css"
 	media="screen">
+
 <script src="js/recorder.js"></script>
 <script src="js/Fr.voice.js"></script>
 <script src="js/record.js"></script>
 
 <script type="text/javascript">
-
 	var clicked = "false";
 	var map;
 	var event;
+	var microm = null;
+	var mp3 = null;
+
+	var bag;
+	var cot;
+	var gang;
+	var past;
+	var spa;
+	var band;
+	var deck;
+	var house;
+	var pasta;
+	var test;
+	var boat;
+	var duck;
+	var how;
+	var pool;
+	var tie;
+	var boot;
+	var face;
+	var kiss;
+	var seat;
+	var tight;
+	var caught;
+	var far;
+	var pack;
+	var sharp;
+	var too;
+	var recording_option_start;
+	var recording_option_stop;
 
 	$(document).ready(function() {
 		google.maps.event.addDomListener(window, "load", initAutocomplete);
-
-		 $("body").show();
+		/* microm = new Microm(); */
+		$("body").show();
 		$("#my").wizard();
 
 		$('.dropdown-menu').find('form').click(function(e) {
@@ -351,7 +381,7 @@ a.button {
 }
 </style>
 </head>
-<body >
+<body>
 
 	<div class="modal fade" id="my" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
@@ -405,9 +435,9 @@ a.button {
 							Queen's policies.
 						</p>
 						<p>By clicking "Next" below, you acknowledge the following:</p>
-						<p>· You have read and understand the above Letter of
+						<p>1. You have read and understand the above Letter of
 							Information.</p>
-						<p>· You understand that the audio files and background
+						<p>2. You understand that the audio files and background
 							information you submit will be available on a public website.</p>
 					</div>
 					<div id="location" class="wizard-step">
@@ -495,27 +525,162 @@ a.button {
 
 					</div>
 					<div class="wizard-step">
-						<audio controls src="" id="audio"></audio>
+
+
+
+						<!-- <audio controls src="" id="audio"></audio> -->
 						<div style="margin: 10px;">
-							<a class="button" id="record">Start Recording</a> <a
-								class="button disabled one" id="stop">Reset</a> <a
-								class="button disabled one" id="play">Play</a> <a
-								class="button disabled one" id="base64">Submit</a>
+							<p>Bag</p>
+							<button name="bag" id="record">Start Recording</button>
+							<button name="bag" id="stop">Stop</button>
+
 						</div>
 
 						<div style="margin: 10px;">
-							<a class="button" id="record">Start Recording</a> <a
-								class="button disabled one" id="stop">Reset</a> <a
-								class="button disabled one" id="play">Play</a> <a
-								class="button disabled one" id="base64">Submit</a>
+							<p>Cot</p>
+							<button name="cot" id="record">Start Recording</button>
+							<button name="cot" id="stop">Stop</button>
+						</div>
+						<div style="margin: 10px;">
+							<p>Gang</p>
+							<button name="gang" id="record">Start Recording</button>
+							<button name="gang" id="stop">Stop</button>
 						</div>
 
 						<div style="margin: 10px;">
-							<a class="button" id="record">Start Recording</a> <a
-								class="button disabled one" id="stop">Reset</a> <a
-								class="button disabled one" id="play">Play</a> <a
-								class="button disabled one" id="base64">Submit</a>
+							<p>Past</p>
+							<button name="past" id="record">Start Recording</button>
+							<button name="past" id="stop">Stop</button>
 						</div>
+						<div style="margin: 10px;">
+							<p>Spa</p>
+							<button name="spa" id="record">Start Recording</button>
+							<button name="spa" id="stop">Stop</button>
+						</div>
+
+						<div style="margin: 10px;">
+							<p>Band</p>
+							<button name="band" id="record">Start Recording</button>
+							<button name="band" id="stop">Stop</button>
+						</div>
+						<div style="margin: 10px;">
+							<p>Deck</p>
+							<button name="deck" id="record">Start Recording</button>
+							<button name="deck" id="stop">Stop</button>
+
+						</div>
+
+						<div style="margin: 10px;">
+							<p>House</p>
+							<button name="house" id="record">Start Recording</button>
+							<button name="house" id="stop">Stop</button>
+						</div>
+						<div style="margin: 10px;">
+							<p>Pasta</p>
+							<button name="pasta" id="record">Start Recording</button>
+							<button name="pasta" id="stop">Stop</button>
+
+						</div>
+
+						<div style="margin: 10px;">
+							<p>Test</p>
+							<button name="test" id="record">Start Recording</button>
+							<button name="test" id="stop">Stop</button>
+						</div>
+
+
+						<div style="margin: 10px;">
+							<p>Boat</p>
+							<button name="boat" id="record">Start Recording</button>
+							<button name="boat" id="stop">Stop</button>
+						</div>
+						<div style="margin: 10px;">
+							<p>Duck</p>
+							<button name="duck" id="record">Start Recording</button>
+							<button name="duck" id="stop">Stop</button>
+
+						</div>
+
+						<div style="margin: 10px;">
+							<p>How</p>
+							<button name="how" id="record">Start Recording</button>
+							<button name="how" id="stop">Stop</button>
+						</div>
+						<div style="margin: 10px;">
+							<p>Pool</p>
+							<button name="pool" id="record">Start Recording</button>
+							<button name="pool" id="stop">Stop</button>
+
+						</div>
+
+						<div style="margin: 10px;">
+							<p>Tie</p>
+							<button name="tie" id="record">Start Recording</button>
+							<button name="tie" id="stop">Stop</button>
+						</div>
+						<div style="margin: 10px;">
+							<p>Boot</p>
+							<button name="boot" id="record">Start Recording</button>
+							<button name="boot" id="stop">Stop</button>
+
+						</div>
+
+						<div style="margin: 10px;">
+							<p>Face</p>
+							<button name="face" id="record">Start Recording</button>
+							<button name="face" id="stop">Stop</button>
+						</div>
+						<div style="margin: 10px;">
+							<p>Kiss</p>
+							<button name="kiss" id="record">Start Recording</button>
+							<button name="kiss" id="stop">Stop</button>
+
+						</div>
+
+						<div style="margin: 10px;">
+							<p>Seat</p>
+							<button name="seat" id="record">Start Recording</button>
+							<button name="seat" id="stop">Stop</button>
+						</div>
+						<div style="margin: 10px;">
+							<p>Tight</p>
+							<button name="tight" id="record">Start Recording</button>
+							<button name="tight" id="stop">Stop</button>
+
+						</div>
+
+						<div style="margin: 10px;">
+							<p>Caught</p>
+							<button name="caught" id="record">Start Recording</button>
+							<button name="caught" id="stop">Stop</button>
+						</div>
+						<div style="margin: 10px;">
+							<p>Far</p>
+							<button name="far" id="record">Start Recording</button>
+							<button name="far" id="stop">Stop</button>
+
+						</div>
+
+						<div style="margin: 10px;">
+							<p>Pack</p>
+							<button name="pack" id="record">Start Recording</button>
+							<button name="pack" id="stop">Stop</button>
+						</div>
+						<div style="margin: 10px;">
+							<p>Sharp</p>
+							<button name="sharp" id="record">Start Recording</button>
+							<button name="sharp" id="stop">Stop</button>
+
+						</div>
+
+						<div style="margin: 10px;">
+							<p>Too</p>
+							<button name="too" id="record">Start Recording</button>
+							<button name="too" id="stop">Stop</button>
+						</div>
+
+
+
 					</div>
 					<div class="wizard-step">Do you want to submit the details?</div>
 				</div>
@@ -525,59 +690,6 @@ a.button {
 			</div>
 		</div>
 	</div>
-
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Modal Header</h4>
-				</div>
-				<div class="modal-body">
-					<p>Sed ut perspiciatis unde omnis iste natus error sit
-						voluptatem accusantium doloremque laudantium, totam rem aperiam,
-						eaque ipsa quae ab illo inventore veritatis et quasi architecto
-						beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-						voluptas sit aspernatur aut odit aut fugit, sed quia cor magni
-						dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-						quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-						adipisci velit,</p>
-					<p>Do you want to agree?</p>
-				</div>
-				<div class="modal-footer">
-					<button href="#" id="btnYes" class="btn agree">Yes</button>
-					<button href="#" data-dismiss="modal" aria-hidden="true"
-						class="btn secondary">No</button>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true"
-		style="display: none;">
-		<div class="modal-header">
-			<a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
-			<h3>Agree</h3>
-		</div>
-		<div class="modal-body">
-			<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-				accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-				quae ab illo inventore veritatis et quasi architecto beatae vitae
-				dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-				aspernatur aut odit aut fugit, sed quia cor magni dolores eos qui
-				ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
-				dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,</p>
-			<p>Do you want to agree?</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" id="btnYes" class="btn agree">Yes</a> <a href="#"
-				data-dismiss="modal" aria-hidden="true" class="btn secondary">No</a>
-		</div>
-	</div> -->
 
 	<s:if
 		test="hasFieldErrors() || hasActionMessages() || hasActionErrors()">
