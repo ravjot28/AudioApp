@@ -35,7 +35,7 @@ $.fn.wizard = function(config) {
 
 			if (age == 'Select your birth year'
 					|| gender == 'Select your gender'
-					|| ((!langyes && !langno) && (langno && mothertounge.length == 0) )
+					|| ((!langyes && !langno) && (langno && mothertounge.length == 0))
 					|| fluency == 'If not, how would you rate your fluency in English?'
 					|| ((!citizenYes && !citizenNo) && (canadaage == 'If no, at what age did you move to Canada?'))
 					|| emailAddress.length == 0 || yearsspent.length == 0) {
@@ -45,7 +45,7 @@ $.fn.wizard = function(config) {
 				// alert("Location Coordinates selected " + hv);
 				return true;
 			}
-		}else{
+		} else {
 			return true;
 		}
 
@@ -147,6 +147,87 @@ $.fn.wizard = function(config) {
 	});
 
 	btnFinish.on("click", function() {
+
+		var age = $('#age').find(":selected").text();
+		var gender = $('#gender').find(":selected").text();
+		var langyes = $("#langyes").is(":checked");
+		var langno = $("#langno").is(":checked");
+		var mothertounge = $('#mothertounge').val();
+		var fluency = $('#fluency').find(":selected").text();
+		var citizenYes = $("#citizenYes").is(":checked");
+		var citizenNo = $("#citizenNo").is(":checked");
+		var canadaage = $('#canadaage').find(":selected").text();
+		var yearsspent = $('#yearsspent').val();
+		var emailAddress = $('#emailAddress').val();
+		var motherTounge1 = "false";
+		var bornInCanada = "false";
+		if (langyes == "true") {
+			motherTounge1 = "true";
+		}
+
+		if (citizenYes == "true") {
+			bornInCanada = "true";
+		}
+
+		var coordinates = $("#locationCoordinates").val();
+		var request = {
+			"bag" : bag,
+			"cot" : cot,
+			"gang" : gang,
+			"past" : past,
+			"spa" : spa,
+			"band" : band,
+			"deck" : deck,
+			"house" : house,
+			"pasta" : pasta,
+			"test" : test,
+			"boat" : boat,
+			"duck" : duck,
+			"how" : how,
+			"pool" : pool,
+			"tie" : tie,
+			"boot" : boot,
+			"face" : face,
+			"kiss" : kiss,
+			"seat" : seat,
+			"tight" : tight,
+			"caught" : caught,
+			"far" : far,
+			"pack" : pack,
+			"sharp" : sharp,
+			"too" : too,
+			"location" : coordinates,
+			"birthYear" : age,
+			"gender" : gender,
+			"motherToungeData" : motherTounge1,
+			"rateFluency" : fluency,
+			"atWhatAge" : canadaage,
+			"emailAddress" : emailAddress,
+			"town" : yearsspent,
+			"bornInCanada" : bornInCanada,
+			"ifNotMotherTounge" : mothertounge
+		};
+
+		var ajaxData = {};
+		ajaxData["array"] = [ JSON.stringify(request).replace(',', ', ')
+				.replace('[', '').replace(']', '') ];
+		$.ajax({
+			"dataType" : 'json',
+			"type" : "POST",
+			"url" : 'saveAudio.action',
+			"data" : JSON.stringify(ajaxData),
+			contentType : "application/json; charset=utf-8",
+			async : false,
+			success : function(json) {
+				console.log('success  :' + json);
+			},
+			complete : function(msg, a, b) {
+				console.log('complete :' + msg);
+			},
+			error : function(msg, a, b) {
+				console.log('error:' + msg);
+			}
+		});
 
 		if (!validateFinish(step, steps[step - 1])) {
 

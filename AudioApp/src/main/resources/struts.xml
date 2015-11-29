@@ -7,9 +7,13 @@
 
 
 <struts>
+
+
 	<package name="basicStruts" namespace="/ravjot" extends="struts-default">
 	</package>
-	<package name="loginRegistration" extends="struts-default">
+
+	<package name="loginRegistration" extends="struts-default,json-default">
+
 		<action name="login" class="com.rav.audtioapp.action.LoginAction">
 			<result name="success">WEB-INF/main.jsp</result>
 			<result name="input">welcome.jsp</result>
@@ -18,19 +22,22 @@
 			<result name="success">welcome.jsp</result>
 			<result name="input">welcome.jsp</result>
 		</action>
-		<action name="map" class="com.rav.audtioapp.action.MapAction">
-			<result name="success">WEB-INF/main.jsp</result>
-			<result name="input">WEB-INF/main.jsp</result>
-		</action>
-		<action name="getmap" class="com.rav.audtioapp.action.MapAction" method="getMap">
-			<result name="success">WEB-INF/main.jsp</result>
-			<result name="input">WEB-INF/main.jsp</result>
-		</action>
+	</package>
+
+	<package name="audioRecording" extends="struts-default,json-default">
+
+		<interceptors>
+			<interceptor-stack name="jsonStack">
+				<interceptor-ref name="json">
+					<param name="enableSMD">true</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
 		
-		<action name="savemap" class="com.rav.audtioapp.action.MapAction" method="saveMap">
-			<result name="success">WEB-INF/main.jsp</result>
-			<result name="input">WEB-INF/main.jsp</result>
-		</action>
+		<action name="saveAudio" class="com.rav.audtioapp.action.SaveAudio">
+            <interceptor-ref name="jsonStack"></interceptor-ref>
+            <result type="json" />
+        </action>
 	</package>
 
 </struts>

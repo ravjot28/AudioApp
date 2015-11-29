@@ -123,7 +123,7 @@
 				$("#langno").prop('checked', false);
 				$("#citizenYes").prop('checked', false);
 				$("#citizenNo").prop('checked', false);
-				$("#location").val('');
+				$("#locationCoordinates").val('');
 
 				/*var age = $('#age').find(":selected").text();
 				var gender = $('#gender').find(":selected").text();
@@ -145,8 +145,10 @@
 						|| emailAddress.length == 0 || yearsspent.length == 0) {
 					return false;
 				}*/
-
-				$("#location").val(event.latLng);
+				 var myLatLng = event.latLng;
+			    var lat = myLatLng.lat();
+			    var lng = myLatLng.lng();
+				$("#locationCoordinates").val(lat+" "+lng);
 				$('#my').modal('show');
 				clicked = "true";
 			}
@@ -441,7 +443,7 @@ a.button {
 							information you submit will be available on a public website.</p>
 					</div>
 					<div id="location" class="wizard-step">
-						<input type="hidden" id="location" name="location" />
+						<input type="hidden" id="locationCoordinates" name="locationCoordinates" />
 						<p>
 							<select class="form-control" id="age">
 								<option selected="selected">Select your birth year</option>
