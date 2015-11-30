@@ -1,0 +1,6 @@
+{
+  "name": "Audio App",
+  "description": "Audio App",
+  "image": "heroku/java",
+  "addons": [ "heroku-postgresql" ]
+}
