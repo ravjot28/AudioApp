@@ -33,11 +33,15 @@
 				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
-		
+
 		<action name="saveAudio" class="com.rav.audtioapp.action.SaveAudio">
-            <interceptor-ref name="jsonStack"></interceptor-ref>
-            <result type="json" />
-        </action>
+			<interceptor-ref name="jsonStack"></interceptor-ref>
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">jsonString</param>
+			</result>
+		</action>
 	</package>
 
 </struts>

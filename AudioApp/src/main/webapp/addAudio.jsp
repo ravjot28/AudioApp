@@ -20,6 +20,8 @@
 	media="screen">
 <link rel="stylesheet" href="/CSS/footer.css" type="text/css"
 	media="screen">
+	<link rel="stylesheet" href="CSS/success.css" type="text/css"
+	media="screen">
 
 <script src="js/recorder.js"></script>
 <script src="js/Fr.voice.js"></script>
@@ -385,6 +387,12 @@ a.button {
 </head>
 <body>
 
+	<div id="modal-success" class="modal modal-message modal-success fade"
+		style="display: none;" aria-hidden="true">
+		
+		<!-- / .modal-dialog -->
+	</div>
+
 	<div class="modal fade" id="my" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -443,7 +451,8 @@ a.button {
 							information you submit will be available on a public website.</p>
 					</div>
 					<div id="location" class="wizard-step">
-						<input type="hidden" id="locationCoordinates" name="locationCoordinates" />
+						<input type="hidden" id="locationCoordinates"
+							name="locationCoordinates" />
 						<p>
 							<select class="form-control" id="age">
 								<option selected="selected">Select your birth year</option>
