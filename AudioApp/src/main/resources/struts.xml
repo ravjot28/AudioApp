@@ -43,7 +43,15 @@
 			</result>
 		</action>
 		
-		<action name="getAudio" class="com.rav.audtioapp.action.GetAudioAction">
+		<action name="getAudio" class="com.rav.audtioapp.action.GetAudioAction" method="getApprovedAudios">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">jsonString</param>
+			</result>
+		</action>
+		
+		<action name="getUnapprovedAudio" class="com.rav.audtioapp.action.GetAudioAction" method="getUnapprovedAudios">
 			<result type="json">
 				<param name="noCache">true</param>
 				<param name="excludeNullProperties">true</param>

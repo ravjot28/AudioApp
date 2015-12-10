@@ -6,10 +6,26 @@ public class GetAudioAction {
 
 	private String jsonString;
 
-	public String execute() {
+	/*public String execute() {
 		// System.out.println(array);
 		System.out.println("In getAudio");
 		jsonString = GetAudioService.getInstance().processRequest();
+		return "success";
+	}*/
+	
+	
+	public String getUnapprovedAudios() {
+		// System.out.println(array);
+		System.out.println("In getAudio");
+		jsonString = GetAudioService.getInstance().processRequest("Unapproved");
+		return "success";
+	}
+	
+	
+	public String getApprovedAudios() {
+		// System.out.println(array);
+		System.out.println("In getAudio");
+		jsonString = GetAudioService.getInstance().processRequest("Approved");
 		return "success";
 	}
 

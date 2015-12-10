@@ -25,14 +25,34 @@ public class GetAudioDAO {
 			e.printStackTrace();
 		}
 	}
-
-	public List<String> getAllAudio() {
+	
+	public List<String> getUnApprovedAudio() {
 		List<String> result = new ArrayList<String>();
 		Connection connection = DAOUtil.getConnection();
 		Statement statement = null;
 		try {
 			statement = connection.createStatement();
-			String sql = "select emailaddress,longitude,lattitude FROM \"AudioRepo\"";
+			String sql = "select emailaddress,longitude,lattitude FROM \"AudioRepo\" where status  ='NOTAPPROVED'";
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				result.add("{" + rs.getString(1) + "}" + "{" + rs.getString(2) + "}" + "{" + rs.getString(3) + "}");
+			}
+			statement.close();
+			connection.close();
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+
+		return result;
+	}
+	
+	public List<String> getApprovedAudio() {
+		List<String> result = new ArrayList<String>();
+		Connection connection = DAOUtil.getConnection();
+		Statement statement = null;
+		try {
+			statement = connection.createStatement();
+			String sql = "select emailaddress,longitude,lattitude FROM \"AudioRepo\" where status  ='APPROVED'";
 			ResultSet rs = statement.executeQuery(sql);
 			while (rs.next()) {
 				result.add("{" + rs.getString(1) + "}" + "{" + rs.getString(2) + "}" + "{" + rs.getString(3) + "}");

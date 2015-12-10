@@ -20,9 +20,15 @@ public class GetAudioService {
 		}
 	}
 
-	public String processRequest() {
+	public String processRequest(String audioFilter) {
 		String result = "";
-		List<String> data = new GetAudioDAO().getAllAudio();
+		List<String> data = null;
+		System.out.println("Get audio request for "+audioFilter);
+		if(audioFilter.equals("Unapproved"))
+			data = new GetAudioDAO().getUnApprovedAudio();
+		
+		if(audioFilter.equals("Approved"))
+			data = new GetAudioDAO().getApprovedAudio();
 
 		for (String d : data) {
 			result += d + "{}";
