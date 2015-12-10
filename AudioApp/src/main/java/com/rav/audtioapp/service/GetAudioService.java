@@ -29,7 +29,8 @@ public class GetAudioService {
 		
 		if(audioFilter.equals("Approved"))
 			data = new GetAudioDAO().getApprovedAudio();
-
+		
+		System.out.println("Returned list size "+data.size());
 		for (String d : data) {
 			result += d + "{}";
 		}

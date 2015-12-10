@@ -43,6 +43,16 @@
 			</result>
 		</action>
 		
+		
+		<action name="audioRequestApproval" class="com.rav.audtioapp.action.AudioRequestApprovalAction">
+			<interceptor-ref name="jsonStack"></interceptor-ref>
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">jsonString</param>
+			</result>
+		</action>
+		
 		<action name="getAudio" class="com.rav.audtioapp.action.GetAudioAction" method="getApprovedAudios">
 			<result type="json">
 				<param name="noCache">true</param>

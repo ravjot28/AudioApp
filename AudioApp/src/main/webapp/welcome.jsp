@@ -29,8 +29,6 @@
 			e.stopPropagation();
 		});
 
-		
-
 	});
 	function initAutocomplete() {
 		map = new google.maps.Map(document.getElementById('map'), {
@@ -56,41 +54,48 @@
 		          create_marker(point, name, address, false, false, false, "https://lit-journey-6254.herokuapp.com/icons/pin.png");
 		    });
 		});  */
-		
-		$.get("getAudio.action", function(data) {
 
-			//alert(data);
-			
-			var res = data.split("{}");
-			var arrayLength = res.length;
-			for (var i = 0; i < arrayLength; i++) {
-			    //alert(res[i]);
-			    
-			    var coordinates = res[i].split("}{");
-			    
-			   	var email = coordinates[0].replace("{","");
-				var longi = coordinates[1].replace("{","");
-				var lati = coordinates[2].replace("{","");
-			    
-				var point = new google.maps.LatLng(parseFloat(longi), parseFloat(lati));
-				create_marker(point, 'Hi', '<p>Hello '+email+'</p>', false, false, false,"https://lit-journey-6254.herokuapp.com/icons/pin.png");
-			    
-			    //Do something
-			}
-			// $(data).find("marker").each(function () {
-			//Get user input values for the marker from the form
-			//        var name      = $(this).attr('name');
-			//      var address   = '<p>'+ $(this).attr('address') +'</p>';
-			//    var type      = $(this).attr('type');
-			//  var point     = new google.maps.LatLng(parseFloat($(this).attr('lat')),parseFloat($(this).attr('lng')));
+		$
+				.get(
+						"getAudio.action",
+						function(data) {
 
-			//call create_marker() function for xml loaded maker
-			//var point = new google.maps.LatLng(parseFloat(45.4), parseFloat(-75.7));
-			//create_marker(point, 'Temp', '<p>Hello World</p>', false, false, false,
-			//	"https://lit-journey-6254.herokuapp.com/icons/pin.png");
-			//        create_marker(point, name, address, false, false, false, "https://lit-journey-6254.herokuapp.com/icons/pin.png");
-			// });
-		});
+							//alert(data);
+
+							var res = data.split("{}");
+							var arrayLength = res.length;
+							for (var i = 0; i < arrayLength; i++) {
+								//alert(res[i]);
+
+								var coordinates = res[i].split("}{");
+								if (coordinates.length > 3) {
+									var email = coordinates[0].replace("{", "").replace("}", "");
+									var longi = coordinates[1].replace("{", "").replace("}", "");
+									var lati = coordinates[2].replace("{", "").replace("}", "");
+									var id = coordinates[3].replace("{", "").replace("}", "");
+									var point = new google.maps.LatLng(
+											parseFloat(longi), parseFloat(lati));
+									create_marker(point, 'ID: ' + id,
+											'<p>Hello ' + email + '</p>',
+											false, false, false,
+											"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+								}
+								//Do something
+							}
+							// $(data).find("marker").each(function () {
+							//Get user input values for the marker from the form
+							//        var name      = $(this).attr('name');
+							//      var address   = '<p>'+ $(this).attr('address') +'</p>';
+							//    var type      = $(this).attr('type');
+							//  var point     = new google.maps.LatLng(parseFloat($(this).attr('lat')),parseFloat($(this).attr('lng')));
+
+							//call create_marker() function for xml loaded maker
+							//var point = new google.maps.LatLng(parseFloat(45.4), parseFloat(-75.7));
+							//create_marker(point, 'Temp', '<p>Hello World</p>', false, false, false,
+							//	"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+							//        create_marker(point, name, address, false, false, false, "https://lit-journey-6254.herokuapp.com/icons/pin.png");
+							// });
+						});
 
 		var input = document.getElementById('pac-input');
 		var searchBox = new google.maps.places.SearchBox(input);
