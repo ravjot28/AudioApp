@@ -59,8 +59,24 @@
 		
 		$.get("getAudio.action", function(data) {
 
-			alert(data);
-
+			//alert(data);
+			
+			var res = data.split("{}");
+			var arrayLength = res.length;
+			for (var i = 0; i < arrayLength; i++) {
+			    //alert(res[i]);
+			    
+			    var coordinates = res[i].split("}{");
+			    
+			   	var email = coordinates[0].replace("{","");
+				var longi = coordinates[1].replace("{","");
+				var lati = coordinates[2].replace("{","");
+			    
+				var point = new google.maps.LatLng(parseFloat(longi), parseFloat(lati));
+				create_marker(point, 'Hi', '<p>Hello '+email+'</p>', false, false, false,"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+			    
+			    //Do something
+			}
 			// $(data).find("marker").each(function () {
 			//Get user input values for the marker from the form
 			//        var name      = $(this).attr('name');
