@@ -10,7 +10,7 @@ import org.json.simple.parser.ParseException;
 import com.rav.audtioapp.dto.SaveAudioDTO;
 import com.rav.audtioapp.service.SaveAudioService;
 
-public class SaveAudio {
+public class SaveAudioAction {
 	private String jsonString;
 	List<String> array = new ArrayList<String>();
 

@@ -76,7 +76,7 @@
     	
     	
     	this.recorder.clear();
-    	this.stream.stop();
+    	//this.stream.stop();
     	return this;
     },
     

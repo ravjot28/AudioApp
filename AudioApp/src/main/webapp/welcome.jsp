@@ -29,6 +29,8 @@
 			e.stopPropagation();
 		});
 
+		
+
 	});
 	function initAutocomplete() {
 		map = new google.maps.Map(document.getElementById('map'), {
@@ -38,7 +40,7 @@
 			},
 			zoom : 10,
 			mapTypeId : google.maps.MapTypeId.ROADMAP,
-			streetViewControl: false
+			streetViewControl : false
 		});
 
 		/* $.get("getmap.action", function (data) {
@@ -54,9 +56,25 @@
 		          create_marker(point, name, address, false, false, false, "https://lit-journey-6254.herokuapp.com/icons/pin.png");
 		    });
 		});  */
-		var point = new google.maps.LatLng(parseFloat(45.4), parseFloat(-75.7));
-		create_marker(point, 'Temp', '<p>Hello World</p>', false, false, false,
-				"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+		
+		$.get("getAudio.action", function(data) {
+
+			alert(data);
+
+			// $(data).find("marker").each(function () {
+			//Get user input values for the marker from the form
+			//        var name      = $(this).attr('name');
+			//      var address   = '<p>'+ $(this).attr('address') +'</p>';
+			//    var type      = $(this).attr('type');
+			//  var point     = new google.maps.LatLng(parseFloat($(this).attr('lat')),parseFloat($(this).attr('lng')));
+
+			//call create_marker() function for xml loaded maker
+			//var point = new google.maps.LatLng(parseFloat(45.4), parseFloat(-75.7));
+			//create_marker(point, 'Temp', '<p>Hello World</p>', false, false, false,
+			//	"https://lit-journey-6254.herokuapp.com/icons/pin.png");
+			//        create_marker(point, name, address, false, false, false, "https://lit-journey-6254.herokuapp.com/icons/pin.png");
+			// });
+		});
 
 		var input = document.getElementById('pac-input');
 		var searchBox = new google.maps.places.SearchBox(input);
