@@ -35,7 +35,7 @@ public class GetAudioDAO {
 			String sql = "select emailaddress,longitude,lattitude FROM \"AudioRepo\"";
 			ResultSet rs = statement.executeQuery(sql);
 			while (rs.next()) {
-				result.add("{" + rs.getInt(1) + "}" + "{" + rs.getInt(2) + "}" + "{" + rs.getInt(3) + "}");
+				result.add("{" + rs.getString(1) + "}" + "{" + rs.getString(2) + "}" + "{" + rs.getString(3) + "}");
 			}
 			statement.close();
 			connection.close();
